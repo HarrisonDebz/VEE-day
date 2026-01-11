@@ -26,7 +26,7 @@ body {
     font-size: 3.5rem;
     color: var(--primary-color);
     margin-bottom: 0.5rem;
-    animation: popIn 1.5s ease;
+    animation: popIn 2s ease;
 }
 
 .subtitle {
