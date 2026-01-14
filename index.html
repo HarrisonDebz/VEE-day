@@ -1,76 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Happy Valentine's Day Mama! ❤️</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Valentine ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
     <div class="container">
-      <header>
-        <h1 class="title">
-          Happy Valentine's Day, <span id="her-name">Mama</span>! ❤️
-        </h1>
-        <p class="subtitle">
-          A little potion of the internet, created just for you.
-        </p>
-      </header>
+        <!-- Landing Section -->
+        <section id="landing" class="section active">
+            <div class="hearts-background">
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+            </div>
+            <div class="content">
+                <h1 class="title">For My Beautiful Girl <span class="heart-icon">❤️</span></h1>
+                <p class="subtitle">Every day with you feels like Valentine's Day</p>
+                <button class="nav-btn" onclick="navigateTo('message')">Open My Heart 💝</button>
+                <div class="instructions">
+                    <p><i class="fas fa-arrow-down"></i> Scroll down for more love <i class="fas fa-arrow-down"></i></p>
+                </div>
+            </div>
+        </section>
 
-      <section class="gallery">
-        <h2>Below Are Some Of Our Best Moments</h2>
-        <div class="photo-grid">
-          <div class="photo-card">
-            <img
-              src="https://placehold.co/300x400/pink/white?text=Us+1"
-              alt="Memory 1"
-            />
-          </div>
-          <div class="photo-card">
-            <img
-              src="https://placehold.co/300x400/red/white?text=Us+2"
-              alt="Memory 2"
-            />
-          </div>
-          <div class="photo-card">
-            <img
-              src="https://placehold.co/300x400/purple/white?text=Us+3"
-              alt="Memory 3"
-            />
-          </div>
+        <!-- Love Message Section -->
+        <section id="message" class="section">
+            <div class="content">
+                <h2><i class="fas fa-heart"></i> My Dearest Love <i class="fas fa-heart"></i></h2>
+                <div class="message-box">
+                    <p class="love-letter">
+                        My love,<br><br>
+                        From the moment we met, you've filled my life with colors I never knew existed. 
+                        Every smile of yours is a sunrise, every laugh a melody that makes my heart dance.<br><br>
+                        On this Valentine's Day, I want you to know that my love for you grows stronger with each passing day. 
+                        You are my greatest adventure, my favorite dream come true, and the beautiful story I want to keep writing forever.<br><br>
+                        Thank you for being you, for loving me, and for making every moment magical.<br><br>
+                        Forever yours,<br>
+                        <span class="signature">[Your Name]</span>
+                    </p>
+                </div>
+                <button class="nav-btn" onclick="navigateTo('memories')">Our Sweet Memories <i class="fas fa-images"></i></button>
+            </div>
+        </section>
+
+        <!-- Memories Section -->
+        <section id="memories" class="section">
+            <div class="content">
+                <h2><i class="fas fa-camera"></i> Our Beautiful Moments <i class="fas fa-camera"></i></h2>
+                <div class="memories-container">
+                    <div class="memory-card">
+                        <div class="memory-icon">💑</div>
+                        <h3>The First Date</h3>
+                        <p>Remember when we... (Add your special memory)</p>
+                    </div>
+                    <div class="memory-card">
+                        <div class="memory-icon">😂</div>
+                        <h3>That Funny Moment</h3>
+                        <p>I'll never forget when we laughed until we cried...</p>
+                    </div>
+                    <div class="memory-card">
+                        <div class="memory-icon">⭐</div>
+                        <h3>My Favorite Thing About You</h3>
+                        <p>The way you... (Add what you love most about her)</p>
+                    </div>
+                </div>
+                <button class="nav-btn" onclick="navigateTo('gallery')">Love Gallery <i class="fas fa-heart"></i></button>
+            </div>
+        </section>
+
+        <!-- Photo Gallery -->
+        <section id="gallery" class="section">
+            <div class="content">
+                <h2><i class="fas fa-image"></i> Our Love Story in Pictures <i class="fas fa-image"></i></h2>
+                <div class="gallery">
+                    <div class="photo-frame">
+                        <div class="photo-placeholder">
+                            <i class="fas fa-heart"></i>
+                            <p>Add our photo here</p>
+                        </div>
+                    </div>
+                    <div class="photo-frame">
+                        <div class="photo-placeholder">
+                            <i class="fas fa-kiss-wink-heart"></i>
+                            <p>Another beautiful memory</p>
+                        </div>
+                    </div>
+                    <div class="photo-frame">
+                        <div class="photo-placeholder">
+                            <i class="fas fa-users"></i>
+                            <p>Our special moments</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="note">Upload your photos by replacing the image placeholders in the code!</p>
+                <button class="nav-btn" onclick="navigateTo('countdown')">Valentine Countdown <i class="fas fa-clock"></i></button>
+            </div>
+        </section>
+
+        <!-- Countdown Section -->
+        <section id="countdown" class="section">
+            <div class="content">
+                <h2><i class="fas fa-clock"></i> Counting Every Moment Until Valentine's Day <i class="fas fa-clock"></i></h2>
+                <div class="countdown-container">
+                    <div class="countdown-box">
+                        <span id="days" class="countdown-number">00</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span id="hours" class="countdown-number">00</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span id="minutes" class="countdown-number">00</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span id="seconds" class="countdown-number">00</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+                <div class="final-message">
+                    <h3>Every second brings me closer to you</h3>
+                    <p>I love you more than words can express</p>
+                </div>
+                <button class="nav-btn" onclick="navigateTo('landing')">Back to Beginning <i class="fas fa-home"></i></button>
+            </div>
+        </section>
+
+        <!-- Navigation Dots -->
+        <div class="nav-dots">
+            <span class="dot active" onclick="navigateTo('landing')"></span>
+            <span class="dot" onclick="navigateTo('message')"></span>
+            <span class="dot" onclick="navigateTo('memories')"></span>
+            <span class="dot" onclick="navigateTo('gallery')"></span>
+            <span class="dot" onclick="navigateTo('countdown')"></span>
         </div>
-      </section>
 
-      <section class="letter">
-        <h2>To My Lovely Firefly.</h2>
-        <p>
-          I wanted to do something long lasting for our first Valentine's Day
-          together. So I made this to mark this day in time and history. You
-          make every day brighter just by being in it. Here is to more laughter,
-          more memories, and more love.
-        </p>
-      </section>
-
-      <section class="question-area">
-        <p class="ask-text">Victoria will you be my Valentine?</p>
-        <div class="buttons">
-          <button id="yesBtn">YES! ❤️</button>
-          <button id="noBtn">No</button>
+        <!-- Music Player -->
+        <div class="music-player">
+            <button id="musicBtn" onclick="toggleMusic()">
+                <i class="fas fa-music"></i>
+                <span>Love Song</span>
+            </button>
+            <audio id="loveSong" loop>
+                <source src="https://assets.mixkit.co/music/preview/mixkit-loving-you-117.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
         </div>
-        <p id="success-message" class="hidden">
-          I knew you'd say yes! THANK YOU! 💖
-        </p>
-      </section>
-
-      <footer>
-        <p>Made with love, by yours truly. . . Your Boyfriend, Harrison</p>
-      </footer>
     </div>
 
     <script src="script.js"></script>
-  </body>
+</body>
 </html>
