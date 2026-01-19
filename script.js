@@ -341,7 +341,7 @@ function sendRomanticNotification() {
     // If you want to actually send a text, you'd need to integrate with an SMS API
     // For now, we'll just display a message
     setTimeout(() => {
-        alert("💖 Vee should check her phone! She'll receive a sweet Valentine's message!\n\nGood luck with your proposal, Harrison! ❤️");
+        alert("💖 Victoria,\nIn you, I've found everything I never knew I was looking for. \nYou're not just my love - you're my home, my peace, my happiness.\nThis Valentine's marks our first of many celebrations, \nand I promise to make every single one as special as you are to me.\nWith you, every day is Valentine's Day.\n\nForever and always,\nHarrison❤️ ");
     }, 1500);
 }
 
