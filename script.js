@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isScrolling) return;
         
         isScrolling = true;
-        const sections = ['landing', 'message', 'memories', 'gallery', 'countdown'];
+        const sections = ['landing', 'message', 'memories', 'proposal', 'gallery', 'countdown'];
         const currentIndex = sections.indexOf(getCurrentSection());
         
         if (e.deltaY > 0 && currentIndex < sections.length - 1) {
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isScrolling) return;
         
         const touchEndY = e.changedTouches[0].clientY;
-        const sections = ['landing', 'message', 'memories', 'gallery', 'countdown'];
+        const sections = ['landing', 'message', 'memories', 'proposal', 'gallery', 'countdown'];
         const currentIndex = sections.indexOf(getCurrentSection());
         
         if (touchStartY - touchEndY > 50 && currentIndex < sections.length - 1) {
@@ -65,6 +65,19 @@ document.addEventListener('DOMContentLoaded', function() {
             isScrolling = true;
             navigateTo(sections[currentIndex - 1]);
             setTimeout(() => { isScrolling = false; }, 800);
+        }
+    });
+    
+    // Add keyboard support for proposal
+    document.addEventListener('keydown', function(e) {
+        const currentSection = getCurrentSection();
+        
+        if (currentSection === 'proposal') {
+            if (e.key === 'y' || e.key === 'Y' || e.key === 'Enter') {
+                answerYes();
+            } else if (e.key === 'n' || e.key === 'N') {
+                answerNo();
+            }
         }
     });
 });
@@ -96,7 +109,7 @@ function getCurrentSection() {
 }
 
 function updateNavigationDots(sectionId) {
-    const sections = ['landing', 'message', 'memories', 'gallery', 'countdown'];
+    const sections = ['landing', 'message', 'memories', 'proposal', 'gallery', 'countdown'];
     const dots = document.querySelectorAll('.dot');
     
     dots.forEach((dot, index) => {
@@ -179,8 +192,11 @@ function toggleMusic() {
 
 // Add click effect on buttons
 document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('nav-btn') || e.target.closest('.nav-btn')) {
-        const btn = e.target.classList.contains('nav-btn') ? e.target : e.target.closest('.nav-btn');
+    if (e.target.classList.contains('nav-btn') || e.target.closest('.nav-btn') ||
+        e.target.classList.contains('answer-btn') || e.target.closest('.answer-btn')) {
+        const btn = e.target.classList.contains('nav-btn') || e.target.classList.contains('answer-btn') 
+            ? e.target 
+            : e.target.closest('.nav-btn') || e.target.closest('.answer-btn');
         
         // Create ripple effect
         const ripple = document.createElement('span');
@@ -202,22 +218,148 @@ document.addEventListener('click', function(e) {
     }
 });
 
-// Add CSS for ripple effect
-const style = document.createElement('style');
-style.textContent = `
-    .ripple {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.7);
-        transform: scale(0);
-        animation: ripple-animation 0.6s linear;
-    }
+// Proposal Section Functions
+function answerYes() {
+    const yesResponse = document.getElementById('yesResponse');
+    const noResponse = document.getElementById('noResponse');
+    const answerButtons = document.querySelector('.answer-buttons');
     
-    @keyframes ripple-animation {
-        to {
-            transform: scale(4);
-            opacity: 0;
-        }
+    // Hide buttons, show yes response
+    answerButtons.style.display = 'none';
+    yesResponse.style.display = 'block';
+    noResponse.style.display = 'none';
+    
+    // Create celebration effect
+    createConfetti();
+    playCelebrationSound();
+    
+    // Send romantic notification (simulated)
+    sendRomanticNotification();
+}
+
+function answerNo() {
+    const yesResponse = document.getElementById('yesResponse');
+    const noResponse = document.getElementById('noResponse');
+    const answerButtons = document.querySelector('.answer-buttons');
+    
+    // Hide buttons, show no response
+    answerButtons.style.display = 'none';
+    noResponse.style.display = 'block';
+    yesResponse.style.display = 'none';
+    
+    // Make the No button move away when hovered
+    const noBtn = document.querySelector('.no-btn');
+    noBtn.style.position = 'relative';
+    noBtn.style.transition = 'all 0.3s';
+    
+    // Add funny movement to No button
+    noBtn.addEventListener('mouseover', function() {
+        const x = Math.random() * 200 - 100;
+        const y = Math.random() * 200 - 100;
+        this.style.transform = `translate(${x}px, ${y}px)`;
+    });
+    
+    noBtn.addEventListener('click', function(e) {
+        // Prevent multiple clicks
+        e.stopPropagation();
+        // Button runs away on click
+        const x = Math.random() * 300 - 150;
+        const y = Math.random() * 300 - 150;
+        this.style.transform = `translate(${x}px, ${y}px)`;
+    });
+}
+
+function createConfetti() {
+    const container = document.querySelector('.confetti-container');
+    const colors = ['#e75480', '#ff6b9d', '#4CAF50', '#2196F3', '#FFEB3B', '#9C27B0'];
+    
+    // Clear existing confetti
+    container.innerHTML = '';
+    
+    // Create 150 pieces of confetti
+    for (let i = 0; i < 150; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        
+        // Random properties
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const size = Math.random() * 10 + 5;
+        const left = Math.random() * 100;
+        const duration = Math.random() * 1 + 1;
+        const delay = Math.random() * 2;
+        
+        confetti.style.backgroundColor = color;
+        confetti.style.width = `${size}px`;
+        confetti.style.height = `${size}px`;
+        confetti.style.left = `${left}%`;
+        confetti.style.animationDuration = `${duration}s`;
+        confetti.style.animationDelay = `${delay}s`;
+        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+        
+        container.appendChild(confetti);
+        
+        // Remove confetti after animation
+        setTimeout(() => {
+            if (confetti.parentNode === container) {
+                confetti.remove();
+            }
+        }, 2000);
     }
-`;
-document.head.appendChild(style);
+}
+
+function playCelebrationSound() {
+    // Create a celebratory sound effect
+    try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        // Play a happy melody
+        oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // C5
+        oscillator.frequency.setValueAtTime(659.25, audioContext.currentTime + 0.1); // E5
+        oscillator.frequency.setValueAtTime(783.99, audioContext.currentTime + 0.2); // G5
+        oscillator.frequency.setValueAtTime(1046.50, audioContext.currentTime + 0.3); // C6
+        
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+        
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.5);
+    } catch (e) {
+        console.log("Audio context not supported, but celebration continues!");
+    }
+}
+
+function sendRomanticNotification() {
+    // Simulate sending a romantic message
+    console.log("💝 Sending romantic notification to Vee...");
+    console.log("📱 Check her phone for a sweet message!");
+    
+    // If you want to actually send a text, you'd need to integrate with an SMS API
+    // For now, we'll just display a message
+    setTimeout(() => {
+        alert("💖 Vee should check her phone! She'll receive a sweet Valentine's message!\n\nGood luck with your proposal, Harrison! ❤️");
+    }, 1500);
+}
+
+// Auto-play music for romantic effect
+window.addEventListener('load', function() {
+    // Auto-start music after a short delay
+    setTimeout(() => {
+        const audio = document.getElementById('loveSong');
+        const button = document.getElementById('musicBtn');
+        
+        if (audio && !audio.paused) {
+            audio.play().then(() => {
+                button.innerHTML = '<i class="fas fa-pause"></i><span>Pause Music</span>';
+            }).catch(e => {
+                console.log("Auto-play was prevented:", e);
+                // Update button to show play icon
+                button.innerHTML = '<i class="fas fa-music"></i><span>Play Love Song</span>';
+            });
+        }
+    }, 2000);
+});
