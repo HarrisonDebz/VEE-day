@@ -190,42 +190,75 @@ body {
     margin-bottom: 15px;
 }
 
-/* Gallery Section */
-.gallery {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin: 40px 0;
-    flex-wrap: wrap;
+/* Gallery Photo Styles */
+.gallery-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.5s;
 }
 
-.photo-frame {
-    width: 250px;
-    height: 300px;
-    background: linear-gradient(45deg, #ffe8ec, #fff5f7);
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 3px dashed #e75480;
-    overflow: hidden;
+.gallery-photo:hover {
+    transform: scale(1.05);
 }
 
-.photo-placeholder {
+.photo-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(231, 84, 128, 0.9);
+    color: white;
+    padding: 10px;
     text-align: center;
+    font-size: 0.9rem;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    transform: translateY(100%);
+    transition: transform 0.3s;
+}
+
+.photo-frame:hover .photo-caption {
+    transform: translateY(0);
+}
+
+/* Remove the old placeholder styles */
+.photo-placeholder {
+    display: none;
+}
+
+/* Upload Instructions */
+.upload-instructions {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 30px 0;
+    text-align: left;
+    border-left: 4px solid #e75480;
+}
+
+.upload-instructions h3 {
     color: #e75480;
-    font-size: 4rem;
+    margin-bottom: 15px;
 }
 
-.photo-placeholder p {
-    font-size: 1rem;
-    margin-top: 10px;
+.upload-instructions ol {
+    padding-left: 20px;
+    margin: 10px 0;
 }
 
-.note {
-    font-style: italic;
-    color: #666;
-    margin-top: 20px;
+.upload-instructions li {
+    margin: 8px 0;
+    color: #555;
+}
+
+.upload-instructions code {
+    background: #e75480;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
 }
 
 /* Countdown Section */
